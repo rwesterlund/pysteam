@@ -10,8 +10,8 @@ Copyright (c) 2013 Scott Rice. All rights reserved.
 import sys
 import os
 
-import game
-from _crc_algorithms import Crc
+from pysteam import game
+from pysteam._crc_algorithms import Crc
 
 class Shortcut(game.Game):
 
@@ -23,6 +23,13 @@ class Shortcut(game.Game):
         self.startdir = startdir
         self.icon = icon
         self.tags = tags
+
+    def __eq__(self, other):
+        return (self.name == other.name and
+                self.exe == other.exe and
+                self.startdir == other.startdir and
+                self.icon == other.icon and
+                self.tags == other.tags)
 
     def appid(self):
         algorithm = Crc(width = 32, poly = 0x04C11DB7, reflect_in = True, xor_in = 0xffffffff, reflect_out = True, xor_out = 0xffffffff)

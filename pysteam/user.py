@@ -7,11 +7,12 @@ Created by Scott on 2013-12-28.
 Copyright (c) 2013 Scott Rice. All rights reserved.
 """
 
+from __future__ import print_function
 import sys
 import os
 
-from _shortcut_parser import ShortcutParser
-from _shortcut_generator import ShortcutGenerator
+from pysteam._shortcut_parser import ShortcutParser
+from pysteam._shortcut_generator import ShortcutGenerator
 
 # Information about SteamIDs and conversion between them found here:
 # https://developer.valvesoftware.com/wiki/SteamID
@@ -66,7 +67,7 @@ class User(object):
             parsed_shortcuts = []
         if parsed_shortcuts == None:
             # TODO: Raise a decent error
-            print "Parsing error on file: %s" % file
+            print("Parsing error on file: %s" % file)
             parsed_shortcuts = []
         return parsed_shortcuts
 
