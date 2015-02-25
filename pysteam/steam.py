@@ -84,10 +84,6 @@ class Steam(object):
         # Any users on the machine will have an entry inside of the userdata
         # folder. As such, the easiest way to find a list of all users on the
         # machine is to just list the folders inside userdata
-        users = []
-        userdata_dir = self.userdata_location()
-        for entry in os.listdir(userdata_dir):
-            if os.path.isdir(os.path.join(userdata_dir,entry)):
-                u = user.User(self, int(entry))
-                users.append(u)
-        return users
+        userdirs = filter(self._is_user_directory, os.listdir(self.userdata_location()))
+        # Exploits the fact that the directory is named the same as the user id
+        return list(map(lambda userdir: user.User(self, int(userdir)), userdirs))
