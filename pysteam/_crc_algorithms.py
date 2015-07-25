@@ -132,7 +132,7 @@ class Crc(object):
         value at the end.
         """
         # If the input data is a string, convert to bytes.
-        if isinstance(in_data, str):
+        if isinstance(in_data, str) or isinstance(in_data, unicode):
             in_data = [ord(c) for c in in_data]
 
         register = self.NonDirectInit
@@ -165,7 +165,7 @@ class Crc(object):
         wich are appended to the input message in the bit-by-bit algorithm.
         """
         # If the input data is a string, convert to bytes.
-        if isinstance(in_data, str):
+        if isinstance(in_data, str) or isinstance(in_data, unicode):
             in_data = [ord(c) for c in in_data]
 
         register = self.DirectInit
@@ -219,7 +219,7 @@ class Crc(object):
         The Standard table_driven CRC algorithm.
         """
         # If the input data is a string, convert to bytes.
-        if isinstance(in_data, str):
+        if isinstance(in_data, str) or isinstance(in_data, unicode):
             in_data = [ord(c) for c in in_data]
 
         tbl = self.gen_table()
